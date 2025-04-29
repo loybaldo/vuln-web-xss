@@ -8,36 +8,87 @@ posts = []
 
 HTML_HEADER = """
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Vulnerable XSS Demo</title>
+    <meta charset="UTF-8">
+    <title>XSS Vulnerable App</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f0f0f0; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        }
+        h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
         input[type="text"], input[type="password"], textarea {
-            width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
         }
         button {
-            padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;
+            padding: 10px 20px;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
-        button.submit { background-color: #007bff; color: white; }
-        button.submit:hover { background-color: #0056b3; }
-        button.delete { background-color: #dc3545; color: white; }
-        button.delete:hover { background-color: #c82333; }
+        button.submit {
+            background-color: #2563eb;
+            color: white;
+        }
+        button.submit:hover {
+            background-color: #1e40af;
+        }
+        button.delete {
+            background-color: #ef4444;
+            color: white;
+        }
+        button.delete:hover {
+            background-color: #b91c1c;
+        }
         .post {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 4px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
         }
-        a {
-            display: inline-block;
-            margin-top: 10px;
-            color: #007bff;
+        .nav {
+            margin-top: 30px;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 20px;
+        }
+        .nav a {
+            margin-right: 15px;
             text-decoration: none;
+            color: #2563eb;
+            font-weight: 500;
         }
-        a:hover { text-decoration: underline; }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        form {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -45,7 +96,12 @@ HTML_HEADER = """
 """
 
 HTML_FOOTER = """
-    <br><a href="/">Home</a> | <a href="/post">Add Post</a> | <a href="/feed">View Feed</a> | <a href="/login">Login</a>
+    <div class="nav">
+        <a href="/">🏠 Home</a>
+        <a href="/post">➕ Add Post</a>
+        <a href="/feed">📰 Feed</a>
+        <a href="/login">🔐 Login</a>
+    </div>
 </div>
 </body>
 </html>
