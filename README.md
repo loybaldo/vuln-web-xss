@@ -2,7 +2,13 @@
 
 This is a demonstration of a web application vulnerable to Cross-Site Scripting (XSS) attacks. The application is built using FastAPI and serves as an educational tool to understand the risks and implications of XSS vulnerabilities.
 
+## Requirements
+
+- [Python 3](https://www.python.org/downloads/)
+- [Git](https://git-scm.com/downloads)
+
 ## Features
+
 - A simple login form that reflects user input without sanitization.
 - Demonstrates how unsanitized input can lead to XSS attacks.
 
