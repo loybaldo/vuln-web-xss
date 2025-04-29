@@ -61,6 +61,9 @@ async def home():
             <li><a href="/feed">View all posts</a></li>
             <li><a href="/login">Go to login</a> (Reflected XSS)</li>
         </ul>
+        <form action="/delete-all" method="post" onsubmit="return confirm('Are you sure you want to delete ALL posts?');">
+            <button type="submit" class="delete">Delete All Posts</button>
+        </form>
     """ + HTML_FOOTER
 
 @app.get("/login", response_class=HTMLResponse)
@@ -131,4 +134,14 @@ async def delete_post(post_id: int):
         <h2>Post Deleted</h2>
         <p>{message}</p>
         <a href="/feed">Back to Feed</a>
+    """ + HTML_FOOTER
+
+@app.post("/delete-all", response_class=HTMLResponse)
+async def delete_all_posts():
+    count = len(posts)
+    posts.clear()
+    return HTML_HEADER + f"""
+        <h2>All Posts Deleted</h2>
+        <p>{count} post(s) removed.</p>
+        <a href="/">Back to Home</a>
     """ + HTML_FOOTER
